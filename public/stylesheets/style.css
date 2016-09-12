@@ -24,7 +24,7 @@ a:hover {
 	display: block;
 	margin: 0 auto;
 	padding-bottom: 2em;
-	max-width:200px;
+	max-width:250px;
 }
 
 h1 {
@@ -54,7 +54,7 @@ h1 {
 
 table {
 	table-layout: fixed;
-	width: 800px;
+	width: 900px;
 	margin: 0 auto;
 	word-wrap: break-word;
 	padding-top:10%;
