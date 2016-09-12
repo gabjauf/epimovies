@@ -1,3 +1,4 @@
+<<<<<<< 3bccc8a2990a4b6ee9a6629a0411942e967cbd7e
 <<<<<<< ebabe9e154f83aadeddc88b724322b24eb32d284
 # Logs
 logs
@@ -43,3 +44,8 @@ jspm_packages
 .idea/*
 *.iml
 >>>>>>> [C][INDEX] change small introduction text
+=======
+launchConfigurations/
+.idea/*
+*.iml
+>>>>>>> [C][GITIGNORE] fix conflict
