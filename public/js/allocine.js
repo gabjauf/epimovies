@@ -1,8 +1,9 @@
 //var allocine = require("allocine-api");
 
+/*globals allocine */
 allocine.api("search", {q: "spiderman", filter: "movie"}, function(error, results) {
     if(error) { console.log("Error : "+ error); return; }
 
-    alert("Voici les données retournées par l'API Allociné:");
-    alert(results);
+    console.log("Voici les données retournées par l'API Allociné:");
+    console.log(results);
 });
