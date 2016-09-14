@@ -1,6 +1,7 @@
 {
 	"plugins": {
-		"node": {}
+		"node": {},
+		"express": {}
 	},
 	"ecmaVersion": 6,
 	"libs": [
