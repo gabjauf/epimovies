@@ -1,6 +1,8 @@
 //var allocine = require("allocine-api");
 
-/*globals allocine */
+imports("../app");
+
+/*globals allocine imports*/
 allocine.api("search", {q: "spiderman", filter: "movie"}, function(error, results) {
     if(error) { console.log("Error : "+ error); return; }
 
