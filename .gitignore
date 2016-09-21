@@ -1,5 +1,3 @@
-<<<<<<< 3bccc8a2990a4b6ee9a6629a0411942e967cbd7e
-<<<<<<< ebabe9e154f83aadeddc88b724322b24eb32d284
 # Logs
 logs
 *.log
@@ -22,9 +20,6 @@ coverage
 # nyc test coverage
 .nyc_output
 
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
 # node-waf configuration
 .lock-wscript
 
@@ -40,12 +35,3 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-=======
-.idea/*
-*.iml
->>>>>>> [C][INDEX] change small introduction text
-=======
-launchConfigurations/
-.idea/*
-*.iml
->>>>>>> [C][GITIGNORE] fix conflict

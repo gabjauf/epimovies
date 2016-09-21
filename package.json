@@ -1,5 +1,4 @@
 {
-<<<<<<< b2738005db094e6c8335e32a5a6f8f11733b5330
   "name": "epimovies",
   "version": "1.0.0",
   "description": "Application for managing movies",
@@ -64,20 +63,4 @@
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
   }
-=======
-	"name": "NodejsStarterApp",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-		"express": "4.13.x",
-		"cfenv": "1.0.x"
-	},
-	"repository": {},
-	"engines": {
-		"node": "4.x"
-	} 
->>>>>>> Add starter application package
 }
