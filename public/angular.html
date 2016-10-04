@@ -1,0 +1,38 @@
+<html ng-app="App">
+<head>
+    <title>Angular 1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="js/hello_world_controller.js"></script>
+</head>
+
+<body>
+<div ng-controller="Controller">
+    <h1>Actuellement au cinéma</h1>
+    <table>
+        <tbody ng-repeat="n in [] | range:20">
+        <tr>
+            <th>Poster</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>image</th>
+            <th>Popularité</th>
+        </tr>
+        <tr>
+            <td>
+                <img width="177" ng-src="https://image.tmdb.org/t/p/w185{{greeting.results[n].poster_path}}"/>
+            </td>
+            <td>{{greeting.results[n].original_title}}</td>
+            <td>{{greeting.results[n].overview}}</td>
+            <td>
+                <img width="177" ng-src="https://image.tmdb.org/t/p/w325/{{greeting.results[n].backdrop_path}}"/>
+            </td>
+            <td>{{greeting.results[n].popularity}} %</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
