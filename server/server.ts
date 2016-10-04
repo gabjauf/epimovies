@@ -6,11 +6,10 @@ var app = express();
 app.use('/app', express.static(path.resolve(__dirname, 'app')));
 app.use('/libs', express.static(path.resolve(__dirname, 'libs')));
 
-var renderIndex = (req: express.Request, res: express.Response) => {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
-}
-
-app.get('/*', renderIndex);
+app.get('/', function(req, res) {
+    res.type('text/plain'); // set content-type
+    res.send('i am a beautiful butterfly'); // send text response
+});
 
 var server = app.listen(port, function() {
     var host = server.address().address;
