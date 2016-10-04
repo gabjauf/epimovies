@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "Application for managing movies",
   "main": "index.js",
+  "angular-cli": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ng serve",
+    "lint": "tslint \"client/**/*.ts\"",
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "e2e": "protractor"
   },
   "repository": {
     "type": "git",
@@ -36,6 +41,7 @@
     "gulp-concat": "2.6.0",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
+    "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
@@ -48,6 +54,19 @@
     "lite-server": "^2.2.2",
     "run-sequence": "1.1.5",
     "typescript": "^2.0.3",
-    "typings": "^1.4.0"
+    "typings": "^1.4.0",
+    "@types/jasmine": "^2.2.30",
+    "angular-cli": "1.0.0-beta.16",
+    "codelyzer": "~0.0.26",
+    "jasmine-core": "2.4.1",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "protractor": "4.0.9",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0"
   }
 }
