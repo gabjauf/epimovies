@@ -22,12 +22,12 @@
         </tr>
         <tr>
             <td>
-                <img width="177" ng-src="https://image.tmdb.org/t/p/w185{{greeting.results[n].poster_path}}"/>
+                <img ng-if="greeting.results[n].poster_path != null" width="185" ng-src="https://image.tmdb.org/t/p/w185{{greeting.results[n].poster_path}}"/>
             </td>
             <td>{{greeting.results[n].original_title}}</td>
             <td>{{greeting.results[n].overview}}</td>
             <td>
-                <img width="177" ng-src="https://image.tmdb.org/t/p/w325/{{greeting.results[n].backdrop_path}}"/>
+                <img ng-if="greeting.results[n].backdrop_path != null" width="237" ng-src="https://image.tmdb.org/t/p/w325/{{greeting.results[n].backdrop_path}}"/>
             </td>
             <td>{{greeting.results[n].popularity}} %</td>
         </tr>
