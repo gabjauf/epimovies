@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/gabjauf/epimovies#readme",
   "dependencies": {
-    "@types/express": "^4.0.33",
     "angular-in-memory-web-api": "~0.1.1",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
@@ -32,14 +31,15 @@
     "express": "^4.14.0",
     "gulp-concat": "2.6.0",
     "gulp-nodemon": "^2.2.1",
+    "mysql": "^2.11.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "tsc": "^1.20150623.0",
+    "typescript": "^2.1.0-dev.20161019",
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "@types/node": "^6.0.45",
     "bower": "^1.7.7",
     "codelyzer": "~0.0.26",
     "concurrently": "^3.0.0",
