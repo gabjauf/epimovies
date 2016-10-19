@@ -5,7 +5,7 @@ var nodemon = require('gulp-nodemon'),
 livereload = require('gulp-livereload');
 
 gulp.task('buildServer', function () {
-    var tsProject = ts.createProject(path.resolve('./server/tsconfig.json'));
+    var tsProject = ts.createProject(path.resolve('./tsconfig.json'));
     return gulp.src(path.resolve('./server/**/*.ts'))
         .pipe(tsProject())
         .js
