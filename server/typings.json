@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "registry:npm/express#4.14.0+20160925001530",
+    "mysql": "registry:npm/mysql#2.11.1+20160922015152"
+  },
+  "globalDependencies": {
+    "node": "registry:env/node#6.0.0+20161015001438"
+  }
+}
