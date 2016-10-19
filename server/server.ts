@@ -1,12 +1,13 @@
-import express = require('express');
+import * as express from 'express';
 import path = require('path');
+
 var port: number = process.env.PORT || 3000;
 var app = express();
 
 app.use('/app', express.static(path.resolve(__dirname, 'app')));
 app.use('/libs', express.static(path.resolve(__dirname, 'libs')));
 
-app.get('/', function(req, res) {
+app.get('/', function(req : express.Request, res: express.Response) {
     res.type('text/plain'); // set content-type
     res.send('i am a beautiful butterfly'); // send text response
 });
