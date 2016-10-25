@@ -3,36 +3,59 @@
     <title>Angular 1</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="/lib/w3-theme-blue.css">
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
     <script src="js/hello_world_controller.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body>
-<div ng-controller="Controller">
-    <h1>Actuellement au cinéma</h1>
-    <table>
-        <tbody ng-repeat="n in [] | range:20">
-        <tr>
-            <th>Poster</th>
-            <th>Titre</th>
-            <th>Description</th>
-            <th>image</th>
-            <th>Popularité</th>
-        </tr>
-        <tr>
-            <td>
-                <img ng-if="greeting.results[n].poster_path != null" width="185" ng-src="https://image.tmdb.org/t/p/w185{{greeting.results[n].poster_path}}"/>
-            </td>
-            <td>{{greeting.results[n].original_title}}</td>
-            <td>{{greeting.results[n].overview}}</td>
-            <td>
-                <img ng-if="greeting.results[n].backdrop_path != null" width="237" ng-src="https://image.tmdb.org/t/p/w325/{{greeting.results[n].backdrop_path}}"/>
-            </td>
-            <td>{{greeting.results[n].popularity}} %</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="ban">
+    <p style="color:black;">Profil</p>
+    <p style="color:black;">Se déconnecter</p>
+</div>
+<div class="content">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+            <div ng-controller="MoviesCtrl">
+                <h1>Actuellement au cinéma</h1>
+                <div class="w3-card-4"
+                     style="width:40%; margin:10px; float: left;"
+                     ng-repeat=" n in [] | range:20">
+                    <header class="w3-container w3-theme">
+                        <h4><b>{{greeting.results[n].original_title}}</b></h4>
+                    </header>
+                    <div class="w3-container">
+                        <img ng-if="greeting.results[n].poster_path != null"
+                             ng-src="https://image.tmdb.org/t/p/w185{{greeting.results[n].poster_path}}"
+                             class="w3-left" style="margin:10px;"/>
+                        <p style="padding:10px;">{{greeting.results[n].overview}}</p>
+                    </div>
+
+                    <!--<img ng-if="greeting.results[n].backdrop_path != null" width="237"-->
+                    <!--ng-src="https://image.tmdb.org/t/p/w325/{{greeting.results[n].backdrop_path}}"/>-->
+                    <div class="rating">
+                        <a href="#9" title="Donner 9 étoiles">☆</a>
+                        <a href="#8" title="Donner 8 étoiles">☆</a>
+                        <a href="#7" title="Donner 7 étoiles">☆</a>
+                        <a href="#6" title="Donner 6 étoiles">☆</a>
+                        <a href="#5" title="Donner 5 étoiles">☆</a>
+                        <a href="#4" title="Donner 4 étoiles">☆</a>
+                        <a href="#3" title="Donner 3 étoiles">☆</a>
+                        <a href="#2" title="Donner 2 étoiles">☆</a>
+                        <a href="#1" title="Donner 1 étoile">☆</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

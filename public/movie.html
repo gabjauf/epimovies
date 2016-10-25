@@ -1,0 +1,41 @@
+<html ng-app="App">
+<head>
+    <title>Angular 1.1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="/lib/w3-theme-blue.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="js/hello_world_controller.js"></script>
+</head>
+
+<body>
+<div ng-controller="MovieCtrl">
+    <h1>Un cinéma</h1>
+    <div class="w3-card-4"
+         style="width:70%; margin:10px;">
+        <header class="w3-container w3-theme">
+            <h4><b>{{greeting.original_title}}</b></h4>
+        </header>
+        <div class="w3-container">
+            <img ng-if="greeting.poster_path != null"
+                 ng-src="https://image.tmdb.org/t/p/w185{{greeting.poster_path}}"
+                 class="w3-left" style="margin:10px;"/>
+            <p style="padding:10px;">{{greeting.overview}}</p>
+        </div>
+        <div class="rating">
+            <a href="#9" title="Donner 9 étoiles">☆</a>
+            <a href="#8" title="Donner 8 étoiles">☆</a>
+            <a href="#7" title="Donner 7 étoiles">☆</a>
+            <a href="#6" title="Donner 6 étoiles">☆</a>
+            <a href="#5" title="Donner 5 étoiles">☆</a>
+            <a href="#4" title="Donner 4 étoiles">☆</a>
+            <a href="#3" title="Donner 3 étoiles">☆</a>
+            <a href="#2" title="Donner 2 étoiles">☆</a>
+            <a href="#1" title="Donner 1 étoile">☆</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,18 +1,32 @@
-/*eslint-env node, allocine-api, cfenv, express*/
-
 //------------------------------------------------------------------------------
 // node.js starter application for Bluemix
 //------------------------------------------------------------------------------
 
 var http = require('http');
-//var allocine = require('allocine-api');
-//
-//allocine.api('movie', {code: '143067'}, function(error, result) {
-//	if(error) { console.log('Error : '+ error); return; }
-//
-//	console.log('Success !');
-//	console.log(result.movie.nationality);
-//});
+
+var Recommender = require('likely');
+var inputMatrix = [ [ 0, 9, 1, 1, 7, 3, 0, 5],
+                    [ 7, 5, 0, 0, 0, 9, 0, 0],
+                    [ 4, 2, 7, 0, 8, 2, 7, 6]
+                  ];
+var rowLabels = ['Alexandra', 'Gabriel', 'Tran'];
+var colLabels = ['S.O.S. Fantômes', 'Hunger Games',
+                'Les Gardiens de la Galaxie',
+                'Batman v Superman : L’aube de la justice',
+                'X-Men : Apocalypse', 'Interstellar',
+                'Suicide Squad', 'Captain America - Civil War'];
+var Model = Recommender.buildModel(inputMatrix, rowLabels, colLabels);
+
+console.log("Les Films recommandés pour Alexandra")
+var recommendations = Model.recommendations('Alexandra');
+console.log(recommendations);
+console.log("Les Films recommandés pour Gabriel")
+var recommendations = Model.recommendations('Gabriel');
+console.log(recommendations);
+console.log("Les Films recommandés pour Tran")
+var recommendations = Model.recommendations('Tran');
+console.log(recommendations);
+
 
 // This application uses express as its web server
 // for more info, see: http://expressjs.com
