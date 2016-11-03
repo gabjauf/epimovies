@@ -9,11 +9,18 @@ export class Db {
     });
 
   static connect() {
-    this.connection.connect();
+    
+    this.connection.connect(function(err) {
+      if (err) {
+        console.error('error connecting: ' + err.stack);
+        throw err;
+      }
+
+      console.log('connected as id ' + this.connection.threadId);
+    });
   }
 
   public static getConnection() {
     return Db.connection;
   }
 }
-Db.connect();

@@ -35,7 +35,7 @@ jspm_packages
 client/bower_components
 
 # Build Directory
-server/build/*
+build/*
 
 # Typings Directory
 server/typings/*

@@ -1,6 +1,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
+var cleanCompiledTypeScript = require('gulp-clean-compiled-typescript');
 var nodemon = require('gulp-nodemon'),
 livereload = require('gulp-livereload');
 
@@ -9,7 +10,7 @@ gulp.task('buildServer', function () {
     return gulp.src(path.resolve('./server/**/*.ts'))
         .pipe(tsProject())
         .js
-        .pipe(gulp.dest(path.resolve('./server/build')))
+        .pipe(gulp.dest(path.resolve('./build')))
 });
 
 gulp.task('watch', function() {
@@ -19,7 +20,7 @@ gulp.task('watch', function() {
 gulp.task('launchServer', ['buildServer'], function () {
     livereload.listen();
     nodemon({
-        script: './server/build/server.js',
+        script: './build/index.js',
         ext: 'js',
     }).on('restart', function () {
         setTimeout(function () {
