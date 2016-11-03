@@ -24,6 +24,7 @@
   "homepage": "https://github.com/gabjauf/epimovies#readme",
   "dependencies": {
     "angular-in-memory-web-api": "~0.1.1",
+    "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "es6-promise": "3.0.2",
