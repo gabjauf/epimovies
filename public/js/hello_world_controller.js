@@ -11,7 +11,7 @@ var and = "&";
 app.controller('MoviesCtrl', function($scope, $http){
     $http({
         methode : "GET",
-        url : head + "discover/movie?" + primary_release_date + sup + equal + "=2016-10-20" + and + primary_release_date + inf + equal + "=2016-10-25" + and + key
+        url : head + "discover/movie?" + primary_release_date + sup + equal + "=2016-10-1" + and + primary_release_date + inf + equal + "=2016-10-26"  + and + key
     }).then(function mySuccess(response) {
         $scope.greeting = response.data;
     }, function myError(response) {

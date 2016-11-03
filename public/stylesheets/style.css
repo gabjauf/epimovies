@@ -110,13 +110,10 @@ pre {
 }
 
 .ban {
-    background: white url("/images/logo-epimovies.png") no-repeat left;
-    text-align: center;
-    width:800px;
+    background-color:white;
     height:200px;
-    margin-left:auto;
-    margin-right:auto;
     border-radius:15px;
+    margin-top:10px;
     font-family: "Trebuchet MS", sans-serif;
     text-decoration:none;
 }
