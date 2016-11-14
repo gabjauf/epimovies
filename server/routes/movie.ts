@@ -18,4 +18,15 @@ router.get('/movies', function(req : express.Request,
     });    
 });
 
+router.get('/movie', function(req : express.Request,
+                         res : express.Response) {
+    var param = req.query.q;
+    res.setHeader('Content-Type', 'application/json');
+    movieDataAccess.Movie.getMovie(param, function(err, result) {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
+
 export = router;

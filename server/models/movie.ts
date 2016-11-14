@@ -34,6 +34,16 @@ export class Movie {
         this._type = type;        
     }
 
+    getVideoDocument() {
+        return { "title" : this._title,         "year" : this._year,
+                 "imdbId" : this._imdbId,       "type" : this._type, 
+                 "poster" : this._poster,       "release_date" : this._releaseDate,
+                 "runtime" : this._runtime,     "plot" : this._plot,
+                 "language" : this._language,   "awards" : this._awards,
+                 "metascore" : this._metascore, "imdbRating" : this._imdbRating
+                 };
+    }
+
 
 }
 
