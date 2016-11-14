@@ -1,13 +1,9 @@
-import * as config from '../config';
-
-var db = config.Db.getConnection();
-
 export class Movie {
 
     _title : string;
     _year : number;
     _releaseDate : string;
-    _runtime : string;
+    _runtime : number;
     _poster : string;
     _plot : string;
     _language : string;
@@ -18,7 +14,7 @@ export class Movie {
     _type : string;
 
     constructor(title : string,         year : number,
-                releaseDate : string,   runtime : string,
+                releaseDate : string,   runtime : number,
                 poster : string,        plot : string,
                 language : string,      awards : string,
                 metascore : number,     imdbRating  :number,
@@ -38,21 +34,7 @@ export class Movie {
         this._type = type;        
     }
 
-    getVideoDocument() {
-        return { "title" : this._title, "year" : this._year,
-                 "imdbId" : this._imdbId, "type" : this._type, 
-                 "poster" : this._poster};
-    }
 
-    commit() {
-        var db = config.Db.getConnection();
-        var query = db.query('INSERT INTO videoDocument SET ?', this.getVideoDocument(), function(err, result) {
-
-        });
-        console.log(query.sql);
-    }
-
-    
 }
 
 

@@ -6,10 +6,10 @@ let router = express.Router();
 
 router.get('/', function(req : express.Request,
                          res : express.Response) {
-    res.send("Welcome to the epimovies API");
+    res.send("Welcome to the epimovies dataImport. From here you can import data into the database");
 });
 
-router.post('/dataImport', function(req : express.Request, 
+router.post('/', function(req : express.Request, 
                                     res : express.Response) {
     try {
         let json : string = req.body;

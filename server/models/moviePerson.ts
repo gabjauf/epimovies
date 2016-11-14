@@ -1,5 +1,7 @@
 export class MovieActor {
 
     movieId : number;
-    actorId : number;
+    personId : number;
+    role : string;
+
 }
