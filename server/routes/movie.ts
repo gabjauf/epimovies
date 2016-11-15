@@ -18,11 +18,21 @@ router.get('/movies', function(req : express.Request,
     });    
 });
 
-router.get('/movie', function(req : express.Request,
+router.get('/movieId', function(req : express.Request,
                          res : express.Response) {
-    var param = req.query.q;
+    var param = req.query.id;
     res.setHeader('Content-Type', 'application/json');
-    movieDataAccess.Movie.getMovie(param, function(err, result) {
+    movieDataAccess.Movie.getMovieById(param, function(err, result) {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
+router.get('/movieName', function(req : express.Request,
+                         res : express.Response) {
+    var param = req.query.title;
+    res.setHeader('Content-Type', 'application/json');
+    movieDataAccess.Movie.getMovieByTitle(param, function(err, result) {
         if (err) throw err;
         res.send(result);
     });

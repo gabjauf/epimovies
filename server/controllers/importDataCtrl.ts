@@ -15,7 +15,6 @@ export class DataController {
 
     saveInDb() {
         // Movies
-        
         let movie = new movieCtrl.MovieCtrl(new movieModel.Movie(
                           this._data.Title,        parseInt(this._data.Year),
                           moment(this._data.Released).format('YYYY-MM-DD'),              
@@ -25,6 +24,7 @@ export class DataController {
                           parseInt(this._data.Metascore),         parseFloat(this._data.imdbRating),
                           this._data.imdbID,                      this._data.Type));
         var movieId = movie.commit();
+        
         // Actors
         let actors = this._data.Actors.split(",");
         actors.forEach(actor => {
