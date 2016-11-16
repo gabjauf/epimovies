@@ -1,4 +1,5 @@
 import * as datactrl from '../controllers/importDataCtrl';
+import * as movieModel from '../models/movie';
 import express = require('express');
 
 
@@ -10,9 +11,10 @@ router.get('/', function(req : express.Request,
 });
 
 router.post('/', function(req : express.Request, 
-                                    res : express.Response) {
+                          res : express.Response) {
     try {
         let json : string = req.body;
+        console.log(json);
         let data = new datactrl.DataController(json);
         data.saveInDb();
     } catch (error) {

@@ -1,7 +1,5 @@
-import * as config from '../config';
 import * as movieModel from '../models/movie'
-
-var db = config.Db.getConnection();
+import * as movieAccess from '../dataAccess/movie'
 
 export class MovieCtrl {
 
@@ -13,24 +11,15 @@ export class MovieCtrl {
     
 
     commit() {
-        var db = config.Db.getConnection();
-        var qResult : any;
-        try {
-        var query = db.query('INSERT INTO t_movies SET ?', this._movie.getVideoDocument(), function(err, result) {
-            // DEBUG
-            if (err != null) {
-                console.log(err);
-                throw err;
-            }
-            console.log(result);
-            //insertId = result.OkPacket[insertId];
-            qResult = result;
-        });
-        
-        console.log(query.sql);
-        } catch (error) {
-            throw error;
+        if (movieAccess.Movie.getMovieByImdbId(this._movie._imdbId, function(err, results) {
+            return true;
+        })) {}
+        else {
+            movieAccess.Movie.insertMovie(this._movie.getVideoDocument(), function(err, result) {
+                if (err) throw err;
+                console.log(result);
+
+            });
         }
-        return qResult.OkPacket.insertId;  
     }
 }
