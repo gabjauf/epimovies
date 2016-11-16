@@ -16,10 +16,11 @@ while NotDone == True:
         #print(movie)
         movieDetail = requests.get('https://www.omdbapi.com/?i=' + movie['imdbID'])
         print(movieDetail.text)
-        requests.post('http://localhost:3000/api/importData', data = movieDetail.text)
+        headers = {'content-type': 'application/json'}
+        requests.post('http://localhost:3000/api/importData', data = movieDetail.text.encode("utf8"), headers = headers)
 
     NotDone = bool(parsed['Response']) # Gets the parameter Response which tell us if we are done!
-    print("NotDone = " + str(NotDone))
+    #print("NotDone = " + str(NotDone))
     i += 1 # Increment the page number
     print("i = " + str(i))
 
