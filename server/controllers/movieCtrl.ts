@@ -8,13 +8,13 @@ export class MovieCtrl {
     static commit(movie : movieModel.Movie, callback) {
         movieAccess.Generic.insertIgnore('t_movies', movie.getVideoDocument(), function(err, result) {
             if (err) throw err;      
-            movieAccess.Generic.getByField('t_movies', 'imdbId', movie._imdbId, function(err, res) {  
+            movieAccess.Generic.getByField('t_movies', 'title', movie._title, function(err, res) {  
                 if (err) throw err;      
-                if (typeof res != 'undefined')
+                if (typeof res[0] !== 'undefined')
                 {          
                     callback(null, res[0].id)
                 }
-                else { console.log(movie.getVideoDocument()) }
+                else { console.log(movie.getVideoDocument()); }
             });  
         });  
     }

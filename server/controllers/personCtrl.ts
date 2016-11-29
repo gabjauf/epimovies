@@ -13,7 +13,7 @@ export class PersonCtrl {
             personAccess.Generic.getByField('t_person', 'name', person._name, function(err, res) {               
                 
                 if (err) throw err;
-                if (typeof res != 'undefined')
+                if (typeof res[0] !== 'undefined')
                 {           
                     personAccess.Generic.insertIgnore('t_role', {"id_movie" : movieId, "id_person" : res[0].id, "role" : role }, function(err, res_role_insert) {
                         if (err) throw err;

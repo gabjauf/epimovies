@@ -12,10 +12,12 @@ export class GenreCtrl {
             if (err) throw err;
             genreAccess.Generic.getByField('t_genres', 'name', genre._name, function(err, res) {
                 if (err) throw err;
-                if (typeof res != 'undefined')
+                if (typeof res[0] !== 'undefined')
                 {           
-                    genreAccess.Generic.insertIgnore('t_movie-genre', {"id_movie" : movieId, "id_genre" : res[0].id }, function(err, res_role_insert) {
+                    console.log(res[0]);
+                    genreAccess.Generic.insertIgnore('t_movie-genre', {"id_movie" : movieId, "id_genre" : res[0].id }, function(err, res_insert) {
                         if (err) throw err;
+                        console.log(res_insert);
                     });
                 }
                 else { console.log(genre._name) }

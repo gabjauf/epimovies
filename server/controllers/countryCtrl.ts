@@ -12,9 +12,9 @@ export class CountryCtrl {
             if (err) throw err;
             countryAccess.Generic.getByField('t_countries', 'name', country._name, function(err, res) {               
                 if (err) throw err;
-                if (typeof res != 'undefined')
+                if (typeof res[0] !== 'undefined')
                 {           
-                    countryAccess.Generic.insertIgnore('t_movie-country', {"id_movie" : movieId, "id_country" : res[0].id}, function(err, res_role_insert) {
+                    countryAccess.Generic.insertIgnore('t_movie-country', {"id_movie" : movieId, "id_country" : res[0].id}, function(err, res_insert) {
                         if (err) throw err;
                     });
                 }

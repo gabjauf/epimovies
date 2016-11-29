@@ -26,8 +26,8 @@ export class DataController {
         // Movie
         this._movie = new movieModel.Movie(
                     data.Title,                             parseInt(data.Year) || 0,
-                    moment(data.Released).format('YYYY-MM-DD'),              
-                    parseInt(data.Runtime),
+                    moment(data.Released).format('YYYY-MM-DD') || '0000-00-00',              
+                    parseInt(data.Runtime) || 0,
                     data.Poster,                            data.Plot,
                     data.Language,                          data.Awards,
                     parseInt(data.Metascore) || 0,          parseFloat(data.imdbRating) || 0,
