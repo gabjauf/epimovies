@@ -1,6 +1,8 @@
 // Controllers
 import * as movieCtrl from './movieCtrl'
 import * as personCtrl from './personCtrl'
+import * as genreCtrl from './genreCtrl'
+import * as countryCtrl from './countryCtrl'
 
 // models
 import * as personModel from '../models/person'
@@ -74,6 +76,12 @@ export class DataController {
             });
             Ctrl._directors.forEach(director => {
                 personCtrl.PersonCtrl.commit(director, 'director', result);
+            });
+            Ctrl._genres.forEach(genre => {
+                genreCtrl.GenreCtrl.commit(genre, result);
+            });
+            Ctrl._countries.forEach(country => {
+                countryCtrl.CountryCtrl.commit(country, result);
             });
         });
         
