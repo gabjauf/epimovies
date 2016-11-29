@@ -6,13 +6,13 @@ var db = config.Db.getConnection();
 export class Movie {
 
     static insertMovie(param : any, doneCallback) {
-        var sql = "REPLACE INTO ?? SET ?";
-            var inserts = ['t_movies', param];
-            var query = db.format(sql, inserts);
-            db.query(query, function(err, results) {
-                if (err) return doneCallback(err);
-                doneCallback(null, results);
-            });
+        var sql = "INSERT INTO ?? SET ?";
+        var inserts = ['t_movies', param];
+        var query = db.format(sql, inserts);
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
     }
 
 

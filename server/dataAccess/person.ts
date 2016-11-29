@@ -6,7 +6,7 @@ var db = config.Db.getConnection();
 export class Person {
 
     static insertPerson(param : any, doneCallback) {
-        var sql = "REPLACE INTO ?? SET ?";
+        var sql = "INSERT INTO ?? SET ?";
             var inserts = ['t_persons', param];
             var query = db.format(sql, inserts);
             db.query(query, function(err, results) {
@@ -14,3 +14,14 @@ export class Person {
                 doneCallback(null, results);
             });
     }
+
+    static getPersonByName(param : string, doneCallback) {
+        var sql = "SELECT * FROM ?? WHERE ?? LIKE ?";
+        var inserts = ['t_persons', 'name', '%' + param + '%'];
+        var query = db.format(sql, inserts);
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
+}

@@ -1,46 +1,40 @@
-import * as config from '../config';
 import * as personModel from '../models/person'
+import * as personAccess from '../dataAccess/generic'
 
-var db = config.Db.getConnection();
 
 export class PersonCtrl {
 
-    _person : personModel.Person;
-
-    constructor(person : personModel.Person){
-        this._person = person;
-    }
+    constructor(){}
     
-    getPerson() {
-        return { "name" : this._person._name
-                 };
-    }
 
-    getQPerson() {
-        var query = 'SELECT * FROM t_person WHERE name = ' + this._person._name;
-        var qResult : any;
-        db.query(query, function(err, result) {
-            qResult = result;
+    static commit(person : personModel.Person, role :string, movieId : number) {
+        //personAccess.Generic.getByField('t_person', 'name', person._name, function(err, res) {
+        //    if (err) throw err;
+        //    console.log(res);
+        //    if (res.length === 0) // If no person exist in the database, insert it and link it to the movie
+        //    {
+        //        personAccess.Generic.insert('t_person', person.getPerson(), function(err, result) {
+        //            if (err) throw err;
+        //            personAccess.Generic.insert('t_role', {"id_movie" : movieId, "id_person" : result.insertId, "role" : role }, function(err, res_role_insert) {
+        //                if (err) throw err;
+        //            });
+        //        });
+        //    }
+        //    else // just link the existing person to the movie
+        //    {
+        //        personAccess.Generic.insert('t_role', {"id_movie" : movieId, "id_person" : res[0].id, "role" : role }, function(err, res_role_insert) {
+        //            if (err) throw err;
+        //        });
+        //    }
+        //});
+        personAccess.Generic.insertIgnore('t_person', person.getPerson(), function(err, result) {
+            if (err) throw err;
+            personAccess.Generic.getByField('t_person', 'name', person._name, function(err, res) {               
+                personAccess.Generic.insertIgnore('t_role', {"id_movie" : movieId, "id_person" : res[0].id, "role" : role }, function(err, res_role_insert) {
+                    if (err) throw err;
+                });
+            });
         });
-        console.log(qResult);
-    }
 
-    commit() {
-        var qResult : any;
-        try {
-        var query = db.query('INSERT INTO t_person SET ?', this.getPerson(), function(err, result) {
-            // DEBUG
-            if (err != null) {
-                console.log(err);
-            }
-            console.log(result);
-            //insertId = result.OkPacket[insertId];
-            qResult = result;
-        });
-        console.log(query.sql);
-        } catch (error) {
-            throw error;
-        }
-        return qResult.OkPacket.inserId;
     }
 }
