@@ -68,6 +68,7 @@ export class DataController {
         // Movies
         var Ctrl = this;
         movieCtrl.MovieCtrl.commit(this._movie, function(err, result) {
+            if (err) throw err;
             Ctrl._actors.forEach(actor => {
                 personCtrl.PersonCtrl.commit(actor, 'actor', result);
             });

@@ -14,10 +14,8 @@ export class GenreCtrl {
                 if (err) throw err;
                 if (typeof res[0] !== 'undefined')
                 {           
-                    console.log(res[0]);
                     genreAccess.Generic.insertIgnore('t_movie-genre', {"id_movie" : movieId, "id_genre" : res[0].id }, function(err, res_insert) {
                         if (err) throw err;
-                        console.log(res_insert);
                     });
                 }
                 else { console.log(genre._name) }
