@@ -19,6 +19,17 @@ router.get('/getAll', function(req : express.Request,
     });    
 });
 
+router.get('/getPage', function(req : express.Request,
+                         res : express.Response) {
+    var pageNbr = req.query.pageNbr;
+    var NbrPerPage = req.query.NbrPerPage;
+    res.setHeader('Content-Type', 'application/json');
+    movieDataAccess.Movie.getAllMoviesPage(pageNbr, NbrPerPage function(err, result) {
+        if (err) throw err;
+        res.send(result);
+    });    
+});
+
 router.get('/getById', function(req : express.Request,
                          res : express.Response) {
     var param = req.query.id;

@@ -65,4 +65,12 @@ export class Movie {
             doneCallback(null, results);
         });
     }
+
+    static getAllMoviesPage(pageNumber : number, NbrPerPage : number, doneCallback) {
+        var query = 'SELECT * FROM t_movies LIMIT ' + pageNumber * NbrPerPage + ', ' + NbrPerPage;
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
 }
