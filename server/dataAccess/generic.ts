@@ -29,7 +29,7 @@ export class Generic {
 
     static getByFieldApprox(table : string, field : string, param : string, doneCallback) {
         var sql = "SELECT * FROM ?? WHERE ?? LIKE ?";
-        var inserts = [table, field, '%' + param + '%'];
+        var inserts = [table, field, '% ' + param + ' %'];
         var query = db.format(sql, inserts);
         db.query(query, function(err, results) {
             if (err) return doneCallback(err);

@@ -30,7 +30,7 @@ export class Movie {
 
     static getMovieByTitle(param : string, doneCallback) {
         var sql = "SELECT * FROM ?? WHERE ?? LIKE ?";
-        var inserts = ['t_movies', 'title', '%' + param + '%'];
+        var inserts = ['t_movies', 'title', '% ' + param + ' %'];
         var query = db.format(sql, inserts);
         db.query(query, function(err, results) {
             if (err) return doneCallback(err);

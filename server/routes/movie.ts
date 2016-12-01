@@ -50,5 +50,16 @@ router.get('/getByField', function(req : express.Request,
     });
 });
 
+router.get('/getByFieldApprox', function(req : express.Request,
+                                  res : express.Response) {
+    var param = req.query.param;
+    var field = req.query.field;
+    res.setHeader('Content-Type', 'application/json');
+    generic.Generic.getByFieldApprox('t_movies', field, param, function(err, result) {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
 
 export = router;
