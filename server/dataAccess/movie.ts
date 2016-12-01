@@ -47,6 +47,7 @@ export class Movie {
             doneCallback(null, results);
         });
     }
+    
 
 
         //if (param && typeof param == "string") {

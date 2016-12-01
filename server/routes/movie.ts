@@ -1,5 +1,6 @@
 import express = require('express');
 import * as movieDataAccess from '../dataAccess/movie';
+import * as generic from '../dataAccess/generic';
 
 
 let router = express.Router();
@@ -9,7 +10,7 @@ router.get('/', function(req : express.Request,
     res.send("From this route, access the data from mySQL database:<br>");
 });
 
-router.get('/movies', function(req : express.Request,
+router.get('/getAll', function(req : express.Request,
                          res : express.Response) {
     res.setHeader('Content-Type', 'application/json');
     movieDataAccess.Movie.getAllMovies(function(err, result) {
@@ -18,7 +19,7 @@ router.get('/movies', function(req : express.Request,
     });    
 });
 
-router.get('/movieId', function(req : express.Request,
+router.get('/getById', function(req : express.Request,
                          res : express.Response) {
     var param = req.query.id;
     res.setHeader('Content-Type', 'application/json');
@@ -28,11 +29,22 @@ router.get('/movieId', function(req : express.Request,
     });
 });
 
-router.get('/movieName', function(req : express.Request,
+router.get('/getByTitle', function(req : express.Request,
                          res : express.Response) {
     var param = req.query.title;
     res.setHeader('Content-Type', 'application/json');
     movieDataAccess.Movie.getMovieByTitle(param, function(err, result) {
+        if (err) throw err;
+        res.send(result);
+    });
+});
+
+router.get('/getByField', function(req : express.Request,
+                                  res : express.Response) {
+    var param = req.query.param;
+    var field = req.query.field;
+    res.setHeader('Content-Type', 'application/json');
+    generic.Generic.getByField('t_movies', field, param, function(err, result) {
         if (err) throw err;
         res.send(result);
     });
