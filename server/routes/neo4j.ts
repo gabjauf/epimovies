@@ -53,6 +53,8 @@ router.get('/getCSVPage', function(req: express.Request, res : express.Response)
 
 function ToCSV(data : any, callback) {
     var body = '';
+    var header = Object.getOwnPropertyNames(data[0]);
+    body += header.map(escape).join(exports.separator) + '\r\n';
 
     data.forEach(function(item : any) {
         if (!(item instanceof Array)) item = objToArray(item);
