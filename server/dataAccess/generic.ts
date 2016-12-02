@@ -1,4 +1,3 @@
-import * as movieModel from '../models/person'
 import * as config from '../config';
 
 var db = config.Db.getConnection();

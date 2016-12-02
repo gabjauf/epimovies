@@ -1,6 +1,7 @@
 import express = require('express');
 import * as movieDataAccess from '../dataAccess/movie';
 import * as generic from '../dataAccess/generic';
+import * as neo4j from '../dataAccess/neo4j';
 
 let router = express.Router();
 
@@ -20,6 +21,34 @@ router.get('/getAllMoviesCSV', function(req : express.Request,
             res.send(CSV)
         });
     });    
+});
+
+router.get('/getCSV', function(req: express.Request, res : express.Response) {
+    var table = req.query.table;
+    neo4j.Neo4J.get(table, function(err, result) {
+        if (err) throw err;
+        else {
+            ToCSV(result, function(err, CSV) {
+                res.setHeader('Content-Type', 'text/csv');
+                res.send(CSV);
+            });
+        }
+    });
+});
+
+router.get('/getCSVPage', function(req: express.Request, res : express.Response) {
+    var table = req.query.table;
+    var pageNbr = req.query.pageNbr;
+    var nbrPerPage = req.query.nbrPerPage;
+    neo4j.Neo4J.getPage(table, pageNbr, nbrPerPage, function(err, result) {
+        if (err) throw err;
+        else {
+            ToCSV(result, function(err, CSV) {
+                res.setHeader('Content-Type', 'text/csv');
+                res.send(CSV);
+            });
+        }
+    });
 });
 
 function ToCSV(data : any, callback) {
