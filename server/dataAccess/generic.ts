@@ -57,5 +57,13 @@ export class Generic {
         });
     }
 
-
+    static getAll(table : string, doneCallback) {
+        var sql = "SELECT * FROM ??";
+        var inserts = [table];
+        var query = db.format(sql, inserts);
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
 }

@@ -19,6 +19,8 @@ router.get('/getAll', function(req : express.Request,
     });    
 });
 
+
+
 router.get('/getPage', function(req : express.Request,
                          res : express.Response) {
     var pageNbr = req.query.pageNbr;

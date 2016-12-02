@@ -73,4 +73,16 @@ export class Movie {
             doneCallback(null, results);
         });
     }
+
+// ============================================================
+// ================== NEO4J API ===============================
+// ============================================================
+
+    static getAllMoviesEssentials(doneCallback) {
+        var query = 'SELECT id, title FROM t_movies';
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
 }

@@ -24,4 +24,12 @@ export class Person {
             doneCallback(null, results);
         });
     }
+
+    static getAllPersonsEssentials(doneCallback) {
+        var query = 'SELECT id, name FROM t_person';
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
 }
