@@ -57,10 +57,21 @@ router.get('/getCSVPage', function(req: express.Request, res : express.Response)
 // ============== NEO4J REQUESTS =====================
 // ---------------------------------------------------
 
-router.get('/getSystemRecommandations', function(req: express.Request, res : express.Response) {
+router.get('/getFullSystemRecommandations', function(req: express.Request, res : express.Response) {
     var movieId = req.query.movieId;
     res.setHeader('Content-Type', 'application/json');
-    neo4j.Neo4J.getSystemRecommandations(movieId, function(err, result) {
+    neo4j.Neo4J.getFullSystemRecommandations(movieId, function(err, result) {
+        if (err) throw err;
+        else {
+            res.send(result);
+        }
+    });
+});
+
+router.get('/getEssentialSystemRecommandations', function(req: express.Request, res : express.Response) {
+    var movieId = req.query.movieId;
+    res.setHeader('Content-Type', 'application/json');
+    neo4j.Neo4J.getEssentialSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
             res.send(result);

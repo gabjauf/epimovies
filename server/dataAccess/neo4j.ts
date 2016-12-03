@@ -34,8 +34,18 @@ export class Neo4J {
 // ============== NEO4J REQUESTS =====================
 // ---------------------------------------------------
 
-    static getSystemRecommandations(movieId : number, doneCallback) {
+    static getFullSystemRecommandations(movieId : number, doneCallback) {
         var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie) WHERE Movie.id = {movieId} RETURN p"
+        var params = { "movieId": movieId }
+        neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
+            if (err) return doneCallback(err);
+            console.log(results);
+            return doneCallback(null, results);
+        });
+    }
+
+    static getEssentialSystemRecommandations(movieId : number, doneCallback) {
+        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie) WHERE Movie.id = {movieId} RETURN DISTINCT coMovie"
         var params = { "movieId": movieId }
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
