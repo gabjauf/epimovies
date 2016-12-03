@@ -39,7 +39,6 @@ export class Neo4J {
         var params = { "movieId": movieId }
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
-            console.log(results);
             return doneCallback(null, results);
         });
     }
@@ -49,7 +48,6 @@ export class Neo4J {
         var params = { "movieId": movieId }
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
-            console.log(results);
             return doneCallback(null, results);
         });
     }

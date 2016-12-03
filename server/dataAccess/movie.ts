@@ -47,16 +47,6 @@ export class Movie {
             doneCallback(null, results);
         });
     }
-    
-
-
-        //if (param && typeof param == "string") {
-        //    var query = 'SELECT * FROM t_movies WHERE title = ' + param;
-        //    db.query(query, function(err, results) {
-        //        if (err) return doneCallback(err);
-        //        doneCallback(null, results);
-        //    });
-        //}
 
     static getAllMovies(doneCallback) {
         var query = 'SELECT * FROM t_movies';
@@ -68,6 +58,16 @@ export class Movie {
 
     static getAllMoviesPage(pageNumber : number, NbrPerPage : number, doneCallback) {
         var query = 'SELECT * FROM t_movies LIMIT ' + pageNumber * NbrPerPage + ', ' + NbrPerPage;
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
+
+    static getMultipleMoviesById(array, doneCallback) {
+        var sql = "SELECT * FROM ?? WHERE ?? IN (?)";
+        var inserts = ['t_movies', 'id', array];
+        var query = db.format(sql, inserts);
         db.query(query, function(err, results) {
             if (err) return doneCallback(err);
             doneCallback(null, results);

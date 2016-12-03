@@ -63,6 +63,7 @@ router.get('/getFullSystemRecommandations', function(req: express.Request, res :
     neo4j.Neo4J.getFullSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
+            console.log(result);
             res.send(result);
         }
     });
@@ -74,7 +75,9 @@ router.get('/getEssentialSystemRecommandations', function(req: express.Request, 
     neo4j.Neo4J.getEssentialSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
-            res.send(result);
+            convertToMovies(result, function(err, movies) {
+                res.send(movies);
+            });
         }
     });
 });
@@ -114,6 +117,24 @@ function escape(field : any) {
     return '="' + String(field).replace(/\"/g, '""') + '"';
   }
   return '"' + String(field).replace(/\"/g, '""') + '"';
+}
+
+// ---------------------------------------------------
+// ============== DATA FUNCTIONS  ====================
+// ---------------------------------------------------
+
+function convertToMovies(data, callback) {
+    var movieIds = [];
+    data.forEach(function(movie) {
+        movieIds.push(movie.coMovie.properties.id);
+    });
+    movieDataAccess.Movie.getMultipleMoviesById(movieIds, function(err, result) {
+        if (err) return callback(err);
+        else
+        {
+            return callback(null, result);
+        }
+    });
 }
 
 export = router;
