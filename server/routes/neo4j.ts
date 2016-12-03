@@ -75,7 +75,7 @@ router.get('/getEssentialSystemRecommandations', function(req: express.Request, 
     neo4j.Neo4J.getEssentialSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
-            convertToMovies(result, function(err, movies) {
+            getEssentialMovies(result, function(err, movies) {
                 res.send(movies);
             });
         }
@@ -123,15 +123,25 @@ function escape(field : any) {
 // ============== DATA FUNCTIONS  ====================
 // ---------------------------------------------------
 
-function convertToMovies(data, callback) {
+function getEssentialMovies(data, callback) {
+    data.sort(function(a, b) {
+        return parseInt(a.Id) - parseInt(b.Id);
+    });
     var movieIds = [];
+    console.log(data);
     data.forEach(function(movie) {
-        movieIds.push(movie.coMovie.properties.id);
+        movieIds.push(movie['Id']);
     });
     movieDataAccess.Movie.getMultipleMoviesById(movieIds, function(err, result) {
         if (err) return callback(err);
         else
         {
+            var i = 0;
+            result.forEach(function(res) {
+                //console.log(data)
+                res['Links'] =  data[i].Count;
+                i += 1;
+            });
             return callback(null, result);
         }
     });

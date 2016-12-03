@@ -35,7 +35,7 @@ export class Neo4J {
 // ---------------------------------------------------
 
     static getFullSystemRecommandations(movieId : number, doneCallback) {
-        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie) WHERE Movie.id = {movieId} RETURN p"
+        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie { id : {movieId}}) RETURN DISTINCT coMovie.id AS MovieId, Person.id AS PersonId"
         var params = { "movieId": movieId }
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
@@ -44,7 +44,7 @@ export class Neo4J {
     }
 
     static getEssentialSystemRecommandations(movieId : number, doneCallback) {
-        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie) WHERE Movie.id = {movieId} RETURN DISTINCT coMovie"
+        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie { id : {movieId}}) RETURN DISTINCT coMovie.id AS Id, count(Person.id) As Count"
         var params = { "movieId": movieId }
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
