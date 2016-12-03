@@ -1,4 +1,6 @@
+import neo4j = require('neo4j');
 import * as mysql from 'mysql';
+
 
 export class Db {
   private static connection = mysql.createConnection({
@@ -21,6 +23,14 @@ export class Db {
   }
 
   public static getConnection() {
-    return Db.connection;
+      return Db.connection;
   }
+}
+
+export class NeoDb {
+    private static connection = new neo4j.GraphDatabase('http://neo4j:root@localhost:7474');
+
+    public static getConnection() {
+        return NeoDb.connection;
+    }
 }

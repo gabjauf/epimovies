@@ -1,6 +1,7 @@
 import * as config from '../config';
 
 var db = config.Db.getConnection();
+var neo4j = config.NeoDb.getConnection();
 
 export class Neo4J {
 
@@ -28,4 +29,19 @@ export class Neo4J {
             }
         });
     }
+
+// ---------------------------------------------------
+// ============== NEO4J REQUESTS =====================
+// ---------------------------------------------------
+
+    static getSystemRecommandations(movieId : number, doneCallback) {
+        var cql = "MATCH p=(coMovie) <- [r:IS_INVOLVED_IN] -(Person)-[r2:IS_INVOLVED_IN]->(Movie) WHERE Movie.id = {movieId} RETURN p"
+        var params = { "movieId": movieId }
+        neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
+            if (err) return doneCallback(err);
+            console.log(results);
+            return doneCallback(null, results);
+        });
+    }
+
 }

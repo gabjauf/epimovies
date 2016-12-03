@@ -51,6 +51,28 @@ router.get('/getCSVPage', function(req: express.Request, res : express.Response)
     });
 });
 
+
+
+// ---------------------------------------------------
+// ============== NEO4J REQUESTS =====================
+// ---------------------------------------------------
+
+router.get('/getSystemRecommandations', function(req: express.Request, res : express.Response) {
+    var movieId = req.query.movieId;
+    res.setHeader('Content-Type', 'application/json');
+    neo4j.Neo4J.getSystemRecommandations(movieId, function(err, result) {
+        if (err) throw err;
+        else {
+            res.send(result);
+        }
+    });
+});
+
+
+// ---------------------------------------------------
+// ============== CSV FUNCTIONS  =====================
+// ---------------------------------------------------
+
 function ToCSV(data : any, callback) {
     var body = '';
     var header = Object.getOwnPropertyNames(data[0]);
