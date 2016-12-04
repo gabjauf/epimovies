@@ -3,8 +3,6 @@ import random
 import requests
 import json
 
-stringSize = 8
-
 for i in range(1, 2000):
     headers = {'content-type': 'application/json'}
     user = "\"user" + str(i) + "\""
