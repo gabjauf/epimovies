@@ -3,13 +3,11 @@ import json
 from multiprocessing.pool import ThreadPool
 from time import time as timer
 
-'https://www.omdbapi.com/?s=of&page='
-
-Elements = int(json.loads(requests.get('https://www.omdbapi.com/?s=of').text)['totalResults']) / 10
+Elements = int(json.loads(requests.get('https://www.omdbapi.com/?s=of&y=2016').text)['totalResults']) / 10
 print(Elements)
 Urls = []
-for i in range(200, Elements):
-    Urls.append("https://www.omdbapi.com/?s=of&page=" + str(i))
+for i in range(1, Elements):
+    Urls.append("https://www.omdbapi.com/?s=of&y=2016&page=" + str(i))
 
 
 def fetch_urls(url):
@@ -30,7 +28,7 @@ def fetch_urls(url):
     return url, None
 
 start = timer()
-results = ThreadPool(200).imap_unordered(fetch_urls, Urls)
+results = ThreadPool(20).imap_unordered(fetch_urls, Urls)
 for url, error in results:
     if error is None:
         print("%r fetched in %ss" % (url, timer() - start))
