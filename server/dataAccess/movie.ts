@@ -74,6 +74,16 @@ export class Movie {
         });
     }
 
+    static getMultipleMoviesByField(fields, ids, doneCallback) {
+        var sql = "SELECT ?? FROM ?? WHERE ?? IN (?)";
+        var inserts = [fields, 't_movies', 'id', array];
+        var query = db.format(sql, inserts);
+        db.query(query, function(err, results) {
+            if (err) return doneCallback(err);
+            doneCallback(null, results);
+        });
+    }
+
 // ============================================================
 // ================== NEO4J API ===============================
 // ============================================================
