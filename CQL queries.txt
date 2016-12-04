@@ -1,0 +1,5 @@
+LOAD CSV WITH HEADERS FROM "http://localhost:3000/api/neo4j/getCSV?table=t_rating" AS ratings
+MERGE (user:User {id : ratings.id_user})
+MERGE (movie:Movie {id : ratings.id_movie})
+MERGE (user) - [:LIKES] -> (movie);
+
