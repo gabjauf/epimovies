@@ -4,6 +4,7 @@ import importData = require('./importData');
 import movie = require('./movie');
 import neo4j = require('./neo4j');
 import user = require('./user');
+import rating = require('./rating');
 
 
 let router = express.Router();
@@ -16,7 +17,7 @@ router.get('/', function(req : express.Request,
 router.use('/movie/', movie);
 router.use('/importData/', importData);
 router.use('/neo4j/', neo4j);
-router.use('/user/', user);
+router.use('/rating/', rating);
 
 
 
