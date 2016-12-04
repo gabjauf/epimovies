@@ -17,6 +17,7 @@ router.get('/', function(req : express.Request,
 router.use('/movie/', movie);
 router.use('/importData/', importData);
 router.use('/neo4j/', neo4j);
+router.use('/user/', user);
 router.use('/rating/', rating);
 
 
