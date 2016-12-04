@@ -5,6 +5,7 @@ import movie = require('./movie');
 import neo4j = require('./neo4j');
 import user = require('./user');
 import rating = require('./rating');
+import generic = require('./generic');
 
 
 let router = express.Router();
@@ -19,6 +20,7 @@ router.use('/importData/', importData);
 router.use('/neo4j/', neo4j);
 router.use('/user/', user);
 router.use('/rating/', rating);
+router.use('/generic/', generic);
 
 
 
