@@ -52,4 +52,22 @@ export class Neo4J {
         });
     }
 
+    static getFullSocialRecommandations(userId : number, doneCallback) {
+        var cql = "MATCH p=(coMovie) <- [r:LIKES] - (user2) -[r2:LIKES]->(Movie) <- [:LIKES] - (user1 {id : {userId}}) RETURN DISTINCT coMovie.id AS movieId, count(user2) AS count ORDER BY count DESC LIMIT 10"
+        var params = {"userId": userId }
+        neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
+            if (err) return doneCallback(err);
+            return doneCallback(null, results);
+        });
+    }
+
+    static getEssentialSocialRecommandations(movieId : number, doneCallback) {
+        var cql = "MATCH p=(coMovie) <- [r:LIKES] - (user2) -[r2:LIKES]->(Movie {id : {movieId}}) RETURN DISTINCT coMovie.id AS movieId, count(user2) AS count ORDER BY count DESC LIMIT 10"
+        var params = {"movieId": movieId }
+        neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
+            if (err) return doneCallback(err);
+            return doneCallback(null, results);
+        });
+    }
+
 }

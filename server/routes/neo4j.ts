@@ -54,7 +54,7 @@ router.get('/getCSVPage', function(req: express.Request, res : express.Response)
 
 
 // ---------------------------------------------------
-// ============== NEO4J REQUESTS =====================
+// ============== NEO4J GET REQUESTS =================
 // ---------------------------------------------------
 
 router.get('/getFullSystemRecommandations', function(req: express.Request, res : express.Response) {
@@ -81,6 +81,36 @@ router.get('/getEssentialSystemRecommandations', function(req: express.Request, 
         }
     });
 });
+
+router.get('/getFullSocialRecommandations', function(req: express.Request, res : express.Response) {
+    var userId = req.query.userId;
+    res.setHeader('Content-Type', 'application/json');
+    neo4j.Neo4J.getFullSocialRecommandations(userId, function(err, result) {
+        if (err) throw err;
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+
+router.get('/getEssentialSocialRecommandations', function(req: express.Request, res : express.Response) {
+    var movieId = req.query.movieId;
+    res.setHeader('Content-Type', 'application/json');
+    neo4j.Neo4J.getEssentialSocialRecommandations(movieId, function(err, result) {
+        if (err) throw err;
+        else {
+            console.log(result);
+            res.send(result);
+        }
+    });
+});
+
+// ---------------------------------------------------
+// ============== NEO4J POST REQUESTS ================
+// ---------------------------------------------------
+
+
 
 
 // ---------------------------------------------------
