@@ -24,6 +24,8 @@ To use neo4j and mysql routes, you first need to provide some data first. For th
 * GenerateUsers         -> Generate 2000 users
 * GenerateRatings       -> To use after generating enough users. Generates 50 random ratings for a random user
 
+For Neo4j data, you can call the HTTP GET route /neo4j/dataImport to import the data from mySQL
+
 # Initialize project
 
 `npm install`     -> Installs the project dependencies
