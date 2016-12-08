@@ -74,9 +74,18 @@ export class Neo4J {
 // ============== NEO4J DATA IMPORT ==================
 // ---------------------------------------------------
 
+    static importRatings(doneCallback) {
+        var cql = "LOAD CSV WITH HEADERS FROM \"http://localhost:3000/api/neo4j/getCSV?table=t_rating\" AS ratings MERGE (user:User {id : ratings.id_user}) MERGE (movie:Movie {id : ratings.id_movie}) MERGE (user) - [:LIKES] -> (movie);"
+        var params = {}
+        neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
+            if (err) return doneCallback(err);
+            return doneCallback(null, results);
+        });
+    }
+
     static importRoles(doneCallback) {
-        var cql = "MATCH p=(coMovie) <- [r:LIKES] - (user2) -[r2:LIKES]->(Movie {id : {movieId}}) RETURN DISTINCT coMovie.id AS movieId, count(user2) AS count ORDER BY count DESC LIMIT 10"
-        var params = {"movieId": movieId }
+        var cql = "LOAD CSV WITH HEADERS FROM \"http://localhost:3000/api/neo4j/getCSV?table=t_role\" AS roles MERGE (person:Person {id : roles.id_person}) MERGE (movie:Movie {id : roles.id_movie}) MERGE (person) - [:IS_INVOLVED_IN] -> (movie);"
+        var params = {}
         neo4j.cypher({"query" : cql, "params" : params}, function(err, results) {
             if (err) return doneCallback(err);
             return doneCallback(null, results);

@@ -108,10 +108,20 @@ router.get('/getEssentialSocialRecommandations', function(req: express.Request, 
 });
 
 // ---------------------------------------------------
-// ============== NEO4J POST REQUESTS ================
+// ============== NEO4J DATA IMPORT REQUESTS ================
 // ---------------------------------------------------
 
-
+router.get('/dataImport', function(req: express.Request, res : express.Response) {
+    neo4j.Neo4J.importRoles(function(err, result) {
+        if (err) throw err;
+        else {
+            neo4j.Neo4J.importRatings(function(err, result) {
+                if (err) throw err;
+                res.send("Data imported into neo4J");
+            });
+        }
+    });
+});
 
 
 // ---------------------------------------------------
