@@ -63,7 +63,6 @@ router.get('/getFullSystemRecommandations', function(req: express.Request, res :
     neo4j.Neo4J.getFullSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
-            console.log(result);
             res.send(result);
         }
     });
@@ -75,7 +74,7 @@ router.get('/getEssentialSystemRecommandations', function(req: express.Request, 
     neo4j.Neo4J.getEssentialSystemRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
-            getEssentialMovies(result, function(err, movies) {
+            getMovies(result, function(err, movies) {
                 res.send(movies);
             });
         }
@@ -88,8 +87,9 @@ router.get('/getFullSocialRecommandations', function(req: express.Request, res :
     neo4j.Neo4J.getFullSocialRecommandations(userId, function(err, result) {
         if (err) throw err;
         else {
-            console.log(result);
-            res.send(result);
+            getMovies(result, function(err, movies) {
+                res.send(movies);
+            });
         }
     });
 });
@@ -100,8 +100,9 @@ router.get('/getEssentialSocialRecommandations', function(req: express.Request, 
     neo4j.Neo4J.getEssentialSocialRecommandations(movieId, function(err, result) {
         if (err) throw err;
         else {
-            console.log(result);
-            res.send(result);
+            getMovies(result, function(err, movies) {
+                res.send(movies);
+            });
         }
     });
 });
@@ -153,14 +154,14 @@ function escape(field : any) {
 // ============== DATA FUNCTIONS  ====================
 // ---------------------------------------------------
 
-function getEssentialMovies(data, callback) {
+function getMovies(data, callback) {
+    // Sorts data because mysql will sort by Id, so we can avoid confusing the ids
     data.sort(function(a, b) {
-        return parseInt(a.Id) - parseInt(b.Id);
+        return parseInt(a.movieId) - parseInt(b.movieId);
     });
     var movieIds = [];
-    console.log(data);
     data.forEach(function(movie) {
-        movieIds.push(movie['Id']);
+        movieIds.push(movie['movieId']);
     });
     movieDataAccess.Movie.getMultipleMoviesById(movieIds, function(err, result) {
         if (err) return callback(err);
@@ -168,9 +169,12 @@ function getEssentialMovies(data, callback) {
         {
             var i = 0;
             result.forEach(function(res) {
-                //console.log(data)
-                res['Links'] =  data[i].Count;
+                res['Links'] =  data[i].count; // Add Links entry to JSON that represents the connections found to the movie
                 i += 1;
+            });
+            // sort by links DESC to avoid front-end treatment 
+            result.sort(function(a, b) {
+                return parseInt(b.Links) - parseInt(a.Links);
             });
             return callback(null, result);
         }
