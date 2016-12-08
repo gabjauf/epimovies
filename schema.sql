@@ -27,7 +27,7 @@ CREATE TABLE `t_countries` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_uniq` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13932 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16742 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `t_genres` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_uniq` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=23729 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23413 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `t_movie-country` (
   KEY `fk_mc_movie_idx` (`id_movie`),
   CONSTRAINT `fk_mc_country` FOREIGN KEY (`id_country`) REFERENCES `t_countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_mc_movie` FOREIGN KEY (`id_movie`) REFERENCES `t_movies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4131 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7473 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +82,7 @@ CREATE TABLE `t_movie-genre` (
   KEY `id_genre_idx` (`id_genre`),
   CONSTRAINT `fk_genre` FOREIGN KEY (`id_genre`) REFERENCES `t_genres` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_movie` FOREIGN KEY (`id_movie`) REFERENCES `t_movies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6555 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11422 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `t_movies` (
   PRIMARY KEY (`id`,`title`),
   UNIQUE KEY `title_UNIQUE` (`title`),
   UNIQUE KEY `imdbId_UNIQUE` (`imdbId`)
-) ENGINE=InnoDB AUTO_INCREMENT=33699 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36663 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `t_person` (
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=77597 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92576 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `t_rating` (
   KEY `fk_movie_rating_idx` (`id_movie`),
   CONSTRAINT `fk_movie_rating` FOREIGN KEY (`id_movie`) REFERENCES `t_movies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_rating` FOREIGN KEY (`id_user`) REFERENCES `t_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,7 +164,7 @@ CREATE TABLE `t_role` (
   KEY `id_person_idx` (`id_person`),
   CONSTRAINT `fk_id_movie` FOREIGN KEY (`id_movie`) REFERENCES `t_movies` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_id_person` FOREIGN KEY (`id_person`) REFERENCES `t_person` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21980 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37008 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,8 +179,10 @@ CREATE TABLE `t_user` (
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_name` (`name`),
+  UNIQUE KEY `unique_user` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2006 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -192,4 +194,4 @@ CREATE TABLE `t_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-02 16:48:05
+-- Dump completed on 2016-12-08 15:02:33
