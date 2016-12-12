@@ -18,7 +18,7 @@ export class ServerApp {
         // parse application/json 
         this._App.use(bodyParser.json());
         this._App.use('/api/', api);
-        this._App.use(express.static(path.join(__dirname, '../client')));
+        this._App.use(express.static(path.join(__dirname, '../public')));
     }
 
     public startServer() {
