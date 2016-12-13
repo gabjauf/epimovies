@@ -1,0 +1,87 @@
+<html ng-app="Epimovies">
+<head>
+    <title>Profil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="/js/epimovies.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+
+<body class="w3-blue-grey">
+<div class="row">
+    <ul class="w3-navbar w3-light-grey">
+        <li class="w3-left"><a href="/movies.html">Home</a></li>
+        <li class="w3-right"><a href="#">Se déconnecter</a></li>
+        <li class="w3-right"><a class="w3-grey" href="#">Profil</a></li>
+    </ul>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="ban w3-display-container">
+            <img src="/images/ban_pellicule.jpg" class="w3-display-left w3-image w3-opacity" style="height:200px"/>
+            <img src="/images/logo-epimovies.png" class="w3-display-right w3-container w3-image"/>
+        </div>
+    </div>
+</div>
+<div class="content" ng-controller="Recommendations">
+    <div class="row">
+        <div class="w3-header col-md-6 col-md-offset-5">
+            <h1>Recommendations</h1>
+        </div>
+    </div>
+    <div class="w3-row">
+        <div style="margin-left:auto; margin-right:auto">
+            <div class="w3-col w3-container " style="width:20%"></div>
+            <div class="w3-col w3-container " style="width:80%">
+                <div class="w3-col m5" style="margin: 10px; float:left">
+                    <h3 style="text-align: center">Social recommendation</h3>
+                    <div class="w3-col m12 w3-card-4"
+                         style="margin:10px; float: left;"
+                         ng-repeat=" n in [] | range:3">
+
+                        <div class="w3-col m12">
+                            <div class="w3-container" style="float: left">
+                                <img ng-if="res[n].poster != null"
+                                     ng-src="{{res[n].poster}}"
+                                     class="w3-left" style="height:200px;margin:10px;"/>
+                            </div>
+
+                            <header class="w3-container" style="height:64px">
+                                <h5><b>{{res[n].title}}</b></h5>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col m5" style="margin: 10px; float:left">
+                    <h3 style="text-align: center">Personel recommendation</h3>
+                    <div class="w3-col m12 w3-card-4"
+                         style="margin:10px; float: left;"
+                         ng-repeat=" n in [] | range:3">
+
+                        <div class="w3-col m12">
+                            <div class="w3-container" style="float: left">
+                                <img ng-if="res[n].poster != null"
+                                     ng-src="{{res[n].poster}}"
+                                     class="w3-left" style="height:200px;margin:10px;"/>
+                            </div>
+
+                            <header class="w3-container" style="height:64px">
+                                <h5><b>{{res[n].title}}</b></h5>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

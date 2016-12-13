@@ -1,0 +1,70 @@
+<html ng-app="Epimovies">
+<head>
+    <title>Movies</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="/js/epimovies.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+
+<body class="w3-blue-grey">
+<div class="row">
+    <ul class="w3-navbar w3-light-grey">
+        <li class="w3-left"><a class="w3-grey" href="/movies.html">Home</a></li>
+        <li class="w3-right"><a href="#">Se déconnecter</a></li>
+        <li class="w3-right"><a href="/profil.html">Profil</a></li>
+    </ul>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="ban w3-display-container">
+            <img src="/images/ban_pellicule.jpg" class="w3-display-left w3-image w3-opacity" style="height:200px"/>
+            <img src="/images/logo-epimovies.png" class="w3-display-right w3-container w3-image"/>
+        </div>
+    </div>
+</div>
+<div class="content" ng-controller="Movies">
+    <div class="row">
+        <div class="w3-header col-md-6 col-md-offset-4">
+            <h1>Actuellement au cinéma</h1>
+        </div>
+    </div>
+    <div class="w3-row">
+        <div style="margin-left:auto; margin-right:auto">
+            <div class="w3-col w3-container " style="width:20%"></div>
+            <div class="w3-col w3-container " style="width:80%">
+                <div class="w3-col m3 w3-card-4"
+                     style="margin:10px; float: left;"
+                     ng-repeat=" n in [] | range:20">
+
+
+                    <header class="w3-container" style="height:64px">
+                        <h5><b>{{res[n].title}}</b></h5>
+                    </header>
+
+                    <div class="w3-container">
+                        <img ng-if="res[n].poster != null"
+                             ng-src="{{res[n].poster}}"
+                             class="w3-left" style="height:100px;margin:10px;"/>
+                        <p style="padding:10px; overflow:hidden; height:200px; font-size: small">{{res[n].plot}}</p>
+                        <a style="padding:10px;" href="#">...</a>
+                    </div>
+
+                    <div class="rating">
+                        <a href="#1" title="like"><i class="w3-xxlarge fa fa-thumbs-up"  style="margin-bottom:15px;margin-right:10px"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -12,6 +12,10 @@ router.get('/', function(req : express.Request,
     res.send("From this route you can manage the ratings given by users to movies");
 });
 
+// {
+//      "movieId" : movieId
+//      "userId" : userId
+// }
 router.post('/', function(req : express.Request, res : express.Response) {
     var body = req.body;
     let rating = new ratingModel.Rating(body.movieId, body.userId);
