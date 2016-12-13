@@ -94,17 +94,23 @@ pre {
     padding: 2px 16px;
 }
 
-.rating a {
-   float: right;
-   color: #aaa;
-   text-decoration: none;
-   font-size: 3em;
-   transition: color .4s;
+.rating button {
+   	float: right;
+   	color: #aaa;
+   	text-decoration: none;
+   	font-size: 3em;
+   	transition: color .4s;
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
 }
-.rating a:hover,
-.rating a:focus,
-.rating a:hover ~ a,
-.rating a:focus ~ a {
+.rating button:hover,
+.rating button:focus,
+.rating button:hover ~ button,
+.rating button:focus ~ button {
    color: blue;
    cursor: pointer;
 }
