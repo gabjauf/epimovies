@@ -58,8 +58,12 @@
                         <a style="padding:10px;" href="#">...</a>
                     </div>
 
-                    <div class="rating">
-                        <a href="#1" title="like"><i class="w3-xxlarge fa fa-thumbs-up"  style="margin-bottom:15px;margin-right:10px"></i></a>
+                    <div class="rating" ng-controller="Like">
+                        <button title="like" ng-click="SendData(res[n].id, 1)">
+                            <i class="w3-xxlarge fa fa-thumbs-up"
+                               style="margin-bottom:15px;margin-right:10px"></i></button>
+                        {{ PostDataResponse }}
+                        {{ ResponseDetails }}
                     </div>
                 </div>
             </div>
