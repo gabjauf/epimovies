@@ -35,10 +35,21 @@ app.controller('Like', function ($scope, $http) {
     }
 });
 
-app.controller('Recommendations', function($scope, $http){
+app.controller('SocialRecommendations', function($scope, $http){
     $http({
         methode : "GET",
-        url : head
+        url : head + "neo4j/getEssentialSocialRecommandations"
+    }).then(function mySuccess(response) {
+        $scope.res = response.data;
+    }, function myError(response) {
+        $scope.res = response.statusText;
+    });
+})
+
+app.controller('SystemRecommendations', function($scope, $http){
+    $http({
+        methode : "GET",
+        url : head + "neo4j/getEssentialSystemRecommandations"
     }).then(function mySuccess(response) {
         $scope.res = response.data;
     }, function myError(response) {
@@ -50,7 +61,7 @@ app.controller('Movie', function($scope, $http){
     $scope.movie = function(id) {
         $http({
             methode : "GET",
-            url : head
+            url : head + "/movie/getById?param=" + id
         }).then(function mySuccess(response) {
             $scope.m = response.data;
         }, function myError(response) {
