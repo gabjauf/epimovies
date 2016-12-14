@@ -19,4 +19,12 @@ router.post('/', function(req : express.Request, res : express.Response) {
     res.send("user added");
 });
 
+router.get('/getRatings', function(req : express.Request, res : express.Response) {
+    var userId = req.query.userId;
+    generic.Generic.getByField('t_rating', 'id_user', userId, function(err, result) {
+        if (err) console.log(err);
+        res.send(result);
+    });
+});
+
 export = router;
