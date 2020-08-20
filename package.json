@@ -24,7 +24,7 @@
   "homepage": "https://github.com/gabjauf/epimovies#readme",
   "dependencies": {
     "angular-in-memory-web-api": "~0.1.1",
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
